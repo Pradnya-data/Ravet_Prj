@@ -29,14 +29,14 @@ def predict_point():
         x_pre=pd.DataFrame(x_pre,columns=x_new.columns)
 
         with open('./label.pkl','rb') as file2:
-            le=pickle.load(file2)
+           le=pickle.load(file2)
 
         with open('./model.pkl','rb') as file3:
             model=pickle.load(file3)
 
         ypred=model.predict(x_pre)
 
-        pred_lb=la.inverse_transform(ypred)[0]
+        pred_lb=le.inverse_transform(ypred)[0]
         prob=model.predict_proba(x_pre).max()
 
         prediction1=f'{pred_lb} with probability: {prob:.4f}'
